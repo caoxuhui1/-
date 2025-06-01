@@ -5,11 +5,9 @@ let cart = [];
 document.querySelectorAll('.add-to-cart').forEach(button => {
     button.addEventListener('click', function() {
         const productId = this.getAttribute('data-id');
-        const productCard = this.closest('.card');
-        const productName = productCard.querySelector('.card-title').textContent;
-        const productPriceText = productCard.querySelector('.text-danger').textContent;
-        const productPrice = parseFloat(productPriceText.replace('¥', '').replace(',', ''));
-        const productImage = productCard.querySelector('.product-img').src;
+        const productName = this.getAttribute('data-name');
+        const productPrice = parseFloat(this.getAttribute('data-price'));
+        const productImage = this.getAttribute('data-image');
         
         // 检查是否已在购物车中
         const existingItem = cart.find(item => item.id === productId);
@@ -29,35 +27,7 @@ document.querySelectorAll('.add-to-cart').forEach(button => {
         updateCart();
         
         // 显示添加成功的提示
-        const toastHtml = `
-            <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-                <div id="liveToast" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header bg-success text-white">
-                        <strong class="me-auto"><i class="bi bi-check-circle me-2"></i> 添加成功</strong>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
-                    </div>
-                    <div class="toast-body bg-light">
-                        <div class="d-flex align-items-center">
-                            <img src="${productImage}" 
-                                 class="rounded me-3" width="40" height="40" style="object-fit: cover;">
-                            <div>
-                                <strong>${productName}</strong><br>
-                                <small>已添加到购物车</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-        
-        const toastContainer = document.createElement('div');
-        toastContainer.innerHTML = toastHtml;
-        document.body.appendChild(toastContainer);
-        
-        // 3秒后移除提示
-        setTimeout(() => {
-            toastContainer.remove();
-        }, 3000);
+        showToast(`"${productName}" 已添加到购物车`);
     });
 });
 
@@ -125,8 +95,10 @@ function updateCart() {
     document.querySelectorAll('.remove-item').forEach(button => {
         button.addEventListener('click', function() {
             const productId = this.getAttribute('data-id');
+            const item = cart.find(item => item.id === productId);
             cart = cart.filter(item => item.id !== productId);
             updateCart();
+            showToast(`"${item.name}" 已从购物车移除`);
         });
     });
     
@@ -164,6 +136,32 @@ function updateCart() {
     });
 }
 
+// 显示提示消息
+function showToast(message) {
+    const toastHtml = `
+        <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+            <div id="liveToast" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header bg-success text-white">
+                    <strong class="me-auto"><i class="bi bi-check-circle me-2"></i> 操作成功</strong>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+                </div>
+                <div class="toast-body bg-light">
+                    ${message}
+                </div>
+            </div>
+        </div>
+    `;
+    
+    const toastContainer = document.createElement('div');
+    toastContainer.innerHTML = toastHtml;
+    document.body.appendChild(toastContainer);
+    
+    // 3秒后移除提示
+    setTimeout(() => {
+        toastContainer.remove();
+    }, 3000);
+}
+
 // 平滑滚动
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
@@ -174,8 +172,15 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const targetElement = document.querySelector(targetId);
         if(targetElement) {
             targetElement.scrollIntoView({
-                behavior: 'smooth'
+                behavior: 'smooth',
+                block: 'start'
             });
+            
+            // 更新导航栏激活状态
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            this.classList.add('active');
         }
     });
 });
@@ -192,9 +197,15 @@ function scrollReveal() {
     });
 }
 
-// 初始化滚动显示
-window.addEventListener('scroll', scrollReveal);
-window.addEventListener('load', scrollReveal);
+// 导航栏滚动效果
+function handleNavbarScroll() {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+}
 
 // 模拟登录功能
 document.getElementById('loginModal').addEventListener('shown.bs.modal', function() {
@@ -210,17 +221,76 @@ document.getElementById('registerModal').addEventListener('shown.bs.modal', func
 document.querySelectorAll('form').forEach(form => {
     form.addEventListener('submit', function(e) {
         e.preventDefault();
-        alert('表单提交成功！');
-        const modal = bootstrap.Modal.getInstance(this.closest('.modal'));
-        if(modal) modal.hide();
+        
+        // 显示加载状态
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>处理中...';
+        submitBtn.disabled = true;
+        
+        // 模拟API请求
+        setTimeout(() => {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            
+            // 根据表单ID执行不同操作
+            if(this.id === 'loginForm') {
+                showToast('登录成功！');
+            } else if(this.id === 'registerForm') {
+                showToast('注册成功！欢迎加入阿哲科技小店');
+            } else if(this.id === 'contactForm') {
+                showToast('消息已发送！我们将尽快回复您');
+            }
+            
+            const modal = bootstrap.Modal.getInstance(this.closest('.modal'));
+            if(modal) modal.hide();
+        }, 1500);
     });
+});
+
+// 结算按钮事件
+document.getElementById('checkoutBtn').addEventListener('click', function() {
+    if(cart.length === 0) {
+        showToast('购物车为空，请先添加商品');
+        return;
+    }
+    
+    // 显示加载状态
+    const originalText = this.innerHTML;
+    this.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>处理中...';
+    this.disabled = true;
+    
+    // 模拟结算过程
+    setTimeout(() => {
+        this.innerHTML = originalText;
+        this.disabled = false;
+        
+        // 显示成功消息
+        const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        showToast(`订单提交成功！总金额: ¥${totalPrice.toFixed(2)}`);
+        
+        // 清空购物车
+        cart = [];
+        updateCart();
+        
+        // 关闭购物车模态框
+        const cartModal = bootstrap.Modal.getInstance(document.getElementById('cartModal'));
+        cartModal.hide();
+    }, 2000);
 });
 
 // 初始化页面
 document.addEventListener('DOMContentLoaded', function() {
-    // 设置校园特色徽章
-    const campusBadges = document.createElement('span');
-    campusBadges.className = 'campus-badge ms-2';
-    campusBadges.textContent = '华农优选';
-    document.querySelector('.navbar-brand').appendChild(campusBadges);
+    // 初始化滚动事件
+    window.addEventListener('scroll', scrollReveal);
+    window.addEventListener('scroll', handleNavbarScroll);
+    window.addEventListener('load', scrollReveal);
+    
+    // 设置当前年份
+    const yearSpan = document.createElement('span');
+    yearSpan.textContent = new Date().getFullYear();
+    document.querySelector('footer small').innerHTML = `&copy; ${yearSpan.textContent} 阿哲科技小店 版权所有`;
+    
+    // 初始化页面滚动位置
+    handleNavbarScroll();
 });
