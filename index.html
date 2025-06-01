@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="阿哲科技小店 - 华中农业大学师生专属的科技产品商城">
     <title>阿哲科技小店 - 您的科技产品商城</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
 </head>
 <body>
     <!-- 导航栏 -->
@@ -15,6 +17,7 @@
         <div class="container">
             <a class="navbar-brand" href="#">
                 <i class="bi bi-laptop"></i> 阿哲科技小店
+                <span class="campus-badge ms-2">华农优选</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -246,7 +249,7 @@
                                     <span class="text-danger fw-bold">¥5999</span>
                                     <span class="text-decoration-line-through text-muted small ms-2">¥6499</span>
                                 </div>
-                                <button class="btn btn-sm btn-outline-primary add-to-cart" data-id="1">
+                                <button class="btn btn-sm btn-outline-primary add-to-cart" data-id="1" data-name="OPPO Ren14" data-price="5999" data-image="https://tse4-mm.cn.bing.net/th/id/OIP-C.tJGDhL8BvTR4EJyquOU5bgHaE8?rs=1&pid=ImgDetMain">
                                     <i class="bi bi-cart-plus"></i>
                                 </button>
                             </div>
@@ -266,7 +269,7 @@
                                 <div>
                                     <span class="text-danger fw-bold">¥899</span>
                                 </div>
-                                <button class="btn btn-sm btn-outline-primary add-to-cart" data-id="2">
+                                <button class="btn btn-sm btn-outline-primary add-to-cart" data-id="2" data-name="降噪无线耳机" data-price="899" data-image="https://tse1-mm.cn.bing.net/th/id/OIP-C.KL05_V3cIeJsnvbr6GoIcgHaFY?rs=1&pid=ImgDetMain">
                                     <i class="bi bi-cart-plus"></i>
                                 </button>
                             </div>
@@ -290,7 +293,7 @@
                                     <span class="text-danger fw-bold">¥1299</span>
                                     <span class="text-decoration-line-through text-muted small ms-2">¥1499</span>
                                 </div>
-                                <button class="btn btn-sm btn-outline-primary add-to-cart" data-id="3">
+                                <button class="btn btn-sm btn-outline-primary add-to-cart" data-id="3" data-name="华为 GT5" data-price="1299" data-image="https://img4.pconline.com.cn/pconline/images/product/20240920/22530239.jpg">
                                     <i class="bi bi-cart-plus"></i>
                                 </button>
                             </div>
@@ -310,7 +313,7 @@
                                 <div>
                                     <span class="text-danger fw-bold">¥2499</span>
                                 </div>
-                                <button class="btn btn-sm btn-outline-primary add-to-cart" data-id="4">
+                                <button class="btn btn-sm btn-outline-primary add-to-cart" data-id="4" data-name="荣耀平板" data-price="2499" data-image="https://ts1.tc.mm.bing.net/th/id/R-C.6b226e7c2c77a55e0b2184dede6b5c38?rik=7GbGVNbL3f5OCA&riu=http%3a%2f%2fwww.zuyushop.com%2fProPic%2f20181%2f201801000933075376.jpg&ehk=ITNuTOAjtoiBQVJsDwGkaXA0%2fGFUL1hl402eMttTYMM%3d&risl=&pid=ImgRaw&r=0">
                                     <i class="bi bi-cart-plus"></i>
                                 </button>
                             </div>
@@ -331,7 +334,7 @@
                                     <span class="text-danger fw-bold">¥399</span>
                                     <span class="text-decoration-line-through text-muted small ms-2">¥499</span>
                                 </div>
-                                <button class="btn btn-sm btn-outline-primary add-to-cart" data-id="5">
+                                <button class="btn btn-sm btn-outline-primary add-to-cart" data-id="5" data-name="索爱 S35Plus" data-price="399" data-image="https://img.alicdn.com/bao/uploaded/i4/2214315093531/O1CN010HCzEu1bxFHDVJ0Ku_!!2214315093531.jpg">
                                     <i class="bi bi-cart-plus"></i>
                                 </button>
                             </div>
@@ -354,7 +357,7 @@
                                 <div>
                                     <span class="text-danger fw-bold">¥6999</span>
                                 </div>
-                                <button class="btn btn-sm btn-outline-primary add-to-cart" data-id="6">
+                                <button class="btn btn-sm btn-outline-primary add-to-cart" data-id="6" data-name="REDMI BOOK 16" data-price="6999" data-image="https://imgservice.suning.cn/uimg1/b2c/image/LIT05tH4F65wHUDUebAm9g.jpg">
                                     <i class="bi bi-cart-plus"></i>
                                 </button>
                             </div>
@@ -420,7 +423,7 @@
                             <p class="card-text">华中农业大学狮子山街道博园6楼601室</p>
                             <div class="mt-4">
                                 <div class="ratio ratio-16x9">
-                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3410.137555046061!2d114.35031361561067!3d30.4809159814373!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x342e1a5e3c0d5f3d%3A0x7c4f7b0c8e0b5b8a!2z5rGf5rK75rC05Y2X5aSn5a2m5bel5Lya5aSn5a2m!5e0!3m2!1szh-CN!2scn!4v1658137696747!5m2!1szh-CN!2scn" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy"></iframe>
+                                    <iframe src="https://www.amap.com/place/B0FFK6CQ6F" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy"></iframe>
                                 </div>
                             </div>
                             <h3 class="card-title mt-4"><i class="bi bi-telephone me-2"></i> 联系电话</h3>
@@ -434,7 +437,7 @@
                     <div class="card h-100 border-0 shadow-sm">
                         <div class="card-body">
                             <h3 class="card-title mb-4">发送消息</h3>
-                            <form>
+                            <form id="contactForm">
                                 <div class="mb-3">
                                     <label for="name" class="form-label">您的姓名</label>
                                     <input type="text" class="form-control" id="name" required>
@@ -482,7 +485,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">继续购物</button>
-                    <button type="button" class="btn btn-primary">去结算</button>
+                    <button type="button" class="btn btn-primary" id="checkoutBtn">去结算</button>
                 </div>
             </div>
         </div>
@@ -497,7 +500,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="loginForm">
                         <div class="mb-3">
                             <label for="loginEmail" class="form-label">电子邮箱</label>
                             <input type="email" class="form-control" id="loginEmail" required>
@@ -529,7 +532,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="registerForm">
                         <div class="mb-3">
                             <label for="registerName" class="form-label">姓名</label>
                             <input type="text" class="form-control" id="registerName" required>
@@ -565,10 +568,9 @@
                     <h5 class="mb-4"><i class="bi bi-laptop me-2"></i> 阿哲科技小店</h5>
                     <p>为华农师生提供优质科技产品的电子商务平台。</p>
                     <div class="mt-4">
-                        <a href="#" class="text-white me-3"><i class="bi bi-facebook" style="font-size: 1.5rem;"></i></a>
-                        <a href="#" class="text-white me-3"><i class="bi bi-twitter" style="font-size: 1.5rem;"></i></a>
-                        <a href="#" class="text-white me-3"><i class="bi bi-instagram" style="font-size: 1.5rem;"></i></a>
-                        <a href="#" class="text-white"><i class="bi bi-wechat" style="font-size: 1.5rem;"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-wechat" style="font-size: 1.5rem;"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-qq" style="font-size: 1.5rem;"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-telephone" style="font-size: 1.5rem;"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 mb-4">
@@ -598,7 +600,12 @@
                         <a href="#">微信支付</a>
                     </div>
                     <div class="mt-4">
-                        <img src="https://cdn.pixabay.com/photo/2015/05/26/09/37/payment-784404_1280.png" class="img-fluid mt-2" alt="支付方式" style="max-height: 40px;">
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge bg-light text-dark p-2">微信支付</span>
+                            <span class="badge bg-light text-dark p-2">支付宝</span>
+                            <span class="badge bg-light text-dark p-2">银联</span>
+                            <span class="badge bg-light text-dark p-2">校园卡</span>
+                        </div>
                     </div>
                 </div>
             </div>
